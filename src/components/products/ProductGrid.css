@@ -17,8 +17,8 @@
 @media (max-width: 600px) {
   .product-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 0 8px;
+    gap: 10px;
+    padding: 0;
   }
 }
 

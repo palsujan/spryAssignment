@@ -1,6 +1,6 @@
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ onFavoritesClick, showBackButton }) => {
   return (
     <header className="app-header">
       <div className="app-header-inner">
@@ -12,7 +12,18 @@ const Header = () => {
           <span className="brand">SPRY</span>
         </div>
         <nav className="header-right">
-          <p className="tag">Quality products, curated</p>
+          {showBackButton ? (
+            <button className="header-btn" onClick={onFavoritesClick} aria-label="Back to shop">
+              ← Back to Shop
+            </button>
+          ) : (
+            <>
+              <p className="tag">Quality products, curated</p>
+              <button className="header-favorites-btn" onClick={onFavoritesClick} aria-label="View favorites" title="View Favorites">
+                ♥ Favorites
+              </button>
+            </>
+          )}
         </nav>
       </div>
     </header>

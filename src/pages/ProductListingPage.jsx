@@ -6,6 +6,7 @@ import FilterBar from "../components/filters/FilterBar";
 import Pagination from "../components/common/Pagination";
 import Loader from "../components/common/Loader";
 import ErrorState from "../components/common/ErrorState";
+import FavoritesPage from "./FavoritesPage";
 import { getProducts } from "../services/productService";
 import "../styles/App.css";
 
@@ -13,6 +14,7 @@ const ProductListingPage = () => {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [showFavorites, setShowFavorites] = useState(false);
 
 	const [selectedCategory, setSelectedCategory] = useState("All");
 	const [minRating, setMinRating] = useState(0);
@@ -98,41 +100,63 @@ const ProductListingPage = () => {
 	const openProduct = (p) => setSelectedProduct(p);
 	const closeProduct = () => setSelectedProduct(null);
 
-		if (loading) return <Loader />;
-		if (error) return <ErrorState message={error} onRetry={() => window.location.reload()} />;
-	
+	if (loading) return <Loader />;
+	if (error) return <ErrorState message={error} onRetry={() => window.location.reload()} />;
+
+	// Show favorites page
+	if (showFavorites) {
 		return (
 			<div className="app-container">
-				<Header />
-				<FilterBar
-					categories={categories}
-					selectedCategory={selectedCategory}
-					onCategoryChange={setSelectedCategory}
-					minRating={minRating}
-					onMinRatingChange={setMinRating}
-					sortBy={sortBy}
-					onSortChange={setSortBy}
+				<Header 
+					onFavoritesClick={() => setShowFavorites(false)}
+					showBackButton={true}
 				/>
-	
-				<ProductGrid
-					products={paginatedProducts}
-					isFavorite={isFavorite}
+				<FavoritesPage
+					favorites={favorites}
+					products={products}
 					onToggleFavorite={onToggleFavorite}
-					onOpenDetail={openProduct}
-				/>
-				<Pagination
-					currentPage={currentPage}
-					totalPages={totalPages}
-					onPageChange={setCurrentPage}
-				/>
-				<ProductDetail
-					product={selectedProduct}
-					onClose={closeProduct}
-					onToggleFavorite={onToggleFavorite}
-					isFavorite={isFavorite}
+					onBack={() => setShowFavorites(false)}
 				/>
 			</div>
 		);
+	}
+
+	// Show main product listing
+	return (
+		<div className="app-container">
+			<Header 
+				onFavoritesClick={() => setShowFavorites(true)}
+				showBackButton={false}
+			/>
+			<FilterBar
+				categories={categories}
+				selectedCategory={selectedCategory}
+				onCategoryChange={setSelectedCategory}
+				minRating={minRating}
+				onMinRatingChange={setMinRating}
+				sortBy={sortBy}
+				onSortChange={setSortBy}
+			/>
+
+			<ProductGrid
+				products={paginatedProducts}
+				isFavorite={isFavorite}
+				onToggleFavorite={onToggleFavorite}
+				onOpenDetail={openProduct}
+			/>
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				onPageChange={setCurrentPage}
+			/>
+			<ProductDetail
+				product={selectedProduct}
+				onClose={closeProduct}
+				onToggleFavorite={onToggleFavorite}
+				isFavorite={isFavorite}
+			/>
+		</div>
+	);
 };
 
 export default ProductListingPage;
