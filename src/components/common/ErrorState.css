@@ -1,0 +1,15 @@
+.error-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #b91c1c;
+}
+
+.error-btn {
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #111827;
+  color: #fff;
+}

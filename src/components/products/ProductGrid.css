@@ -1,0 +1,29 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 260px); /* desktop: 4 columns */
+  gap: 24px;
+  justify-content: center; /* center the whole grid */
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 260px);
+    gap: 20px;
+  }
+}
+
+/* Mobile: 1 column (cards stretch to container) */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 8px;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #666;
+}

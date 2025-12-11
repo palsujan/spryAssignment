@@ -1,0 +1,64 @@
+/* App-level layout and utilities */
+
+/* page background and global container */
+/* App-level layout and utilities */
+
+.app-container {
+	width: 100%;
+	max-width: 1100px;
+	margin: 2rem auto;
+	padding: 1rem;
+	box-sizing: border-box;
+	color: inherit;
+}
+
+:root {
+	--card-bg: #ffffff;
+}
+
+/* @media (prefers-color-scheme: dark) {
+	:root { --card-bg: #1e1e1e; }
+} */
+
+h1 {
+	margin: 0 0 1rem 0;
+	font-size: 1.75rem;
+}
+
+body {
+	background: #f7f7f7;
+}
+
+.app-container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 1.25rem auto;
+	padding: 1rem;
+	box-sizing: border-box;
+	color: inherit;
+}
+
+h1 {
+	margin: 0 0 1rem 0;
+	font-size: 1.25rem;
+}
+
+/* Make sure root content fills nicely on small screens */
+@media (max-width: 600px) {
+	.app-container {
+		padding: 0.5rem;
+		margin: 1rem;
+	}
+	h1 {
+		font-size: 1.25rem;
+	}
+}
+
+/* Ensure buttons and inputs look consistent in light/dark */
+select {
+	padding: 0.45rem;
+	border-radius: 6px;
+	/* border: 1px solid rgba(0,0,0,0.08); */
+	background: transparent;
+	color: inherit;
+}
